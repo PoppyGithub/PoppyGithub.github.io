@@ -147,11 +147,36 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/291600-4d9ed33b20022819.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MacDown logo"></p>
 <p>用Markdown编辑器打开文件，我们可以看到这样的内容：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/291600-b65250dd3ecb585b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MacDown logo"></p>
-
+<p>写下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">你好，欢迎来到我的个人技术博客。</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/291600-9cc8db576372ccd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MacDown logo"></p>
+<p>保存后，我们进行本地发布：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/291600-df83a54c79bcd507.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MacDown logo"></p>
+<p>打开浏览器，输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost:4000/</div></pre></td></tr></table></figure>
+<p>我们可以在浏览器端看到我们搭建好的博客和发布的文章：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/291600-2f95d22d612e8ad7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MacDown logo"></p>
+<p>但是毕竟我们目前发布的只有本机看得到，怎么让其他人看到我们写的博客呢？这时候我们来看看博客的部署。</p>
+<p>我们只要在终端执行这样的命令即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ (sudo) hexo generate</div><div class="line">$ (sudo) hexo deploy</div></pre></td></tr></table></figure>
+<p>这时候我们的博客已经部署到网上了，我们可以在浏览器地址输入栏输入我们的网址即可，如我的博客是：PoppyGitHub.github.io。</p>
+<h2 id="遇到的坑总结："><a href="#遇到的坑总结：" class="headerlink" title="遇到的坑总结："></a>遇到的坑总结：</h2><h4 id="1、一定要以你的Github用户名-github-io创建。"><a href="#1、一定要以你的Github用户名-github-io创建。" class="headerlink" title="1、一定要以你的Github用户名.github.io创建。"></a>1、一定要以你的Github用户名.github.io创建。</h4><p>假如我没有用PoppyGitHub.github.io而是用了wanglei.github.io，那么当我浏览器访问博客的时候会出现404错误。这里并不是没有部署成功，而是把它部署在了这里:<a href="http://PoppyGitHub.github.io/wanglei.github.io。所以，如果想直接PoppyGitHub.github.io访问，那么就需要和用户名保持一致。" target="_blank" rel="external">http://PoppyGitHub.github.io/wanglei.github.io。所以，如果想直接PoppyGitHub.github.io访问，那么就需要和用户名保持一致。</a></p>
+<h4 id="2、如果你在执行-hexo-deloy-如果提示-ERROR-Deployer-not-found-git，那说明你没有安装hexo-deployer-git依赖包，不用担心，只需要输入下面命令："><a href="#2、如果你在执行-hexo-deloy-如果提示-ERROR-Deployer-not-found-git，那说明你没有安装hexo-deployer-git依赖包，不用担心，只需要输入下面命令：" class="headerlink" title="2、如果你在执行$ hexo deloy,如果提示 ERROR Deployer not found: git，那说明你没有安装hexo-deployer-git依赖包，不用担心，只需要输入下面命令："></a>2、如果你在执行$ hexo deloy,如果提示 ERROR Deployer not found: git，那说明你没有安装hexo-deployer-git依赖包，不用担心，只需要输入下面命令：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<p>就能解决这个错误了</p>
+<h4 id="3、发布的时候一直提示："><a href="#3、发布的时候一直提示：" class="headerlink" title="3、发布的时候一直提示："></a>3、发布的时候一直提示：</h4><p>Error: Permission denied (publickey). fatal: Could not read from remote repository.</p>
+<p>分析这个错误提示大致可以推断出是公钥配置的问题引起的。</p>
+<p>重新配置了一下公钥，</p>
+<p>执行ssh -T idealife@github.com<br>也提示：Hi defnngj You’ve successfully authenticated, but GitHub does not provide shell access.<br>说明配置的公钥没有问题。</p>
+<p>执行sudo hexo deploy，提高权限，但是还是报这个错误</p>
+<p>后来查了很多文章，发现我生成公钥的命令是ssh-keygen -t rsa -C “idealife@github.com”，没有加sudo,生成的公钥是当前用户的，路径是 /Users/edz/.ssh,而sudo hexo deploy命令执行的时候应该会去读取的root用户的公钥，很显然root下还没有对应的公钥信息生成。</p>
+<p>随机执行sudo ssh-keygen -t rsa -C “idealife@github.com”，使用通过sudo cat /var/root/.ssh/id_rsa.pub提取公钥信息并配置到github中，执行sudo hexo d,就部署成功了。</p>
+<h1 id="至此，大功告成！"><a href="#至此，大功告成！" class="headerlink" title="至此，大功告成！"></a>至此，大功告成！</h1>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://PoppyGithub.com/2017/06/24/使用hexo搭建github博客/" data-id="cj4e70tc700015oo96xqv4e6a" class="article-share-link">Share</a>
+      <a data-url="http://PoppyGithub.com/2017/06/24/使用hexo搭建github博客/" data-id="cj4fl9gcy0001z6o92697ciwy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -196,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://PoppyGithub.com/2017/06/24/hello-world/" data-id="cj4e70tc200005oo9x8p7e3wy" class="article-share-link">Share</a>
+      <a data-url="http://PoppyGithub.com/2017/06/24/hello-world/" data-id="cj4fl9gcs0000z6o9loe4jjvv" class="article-share-link">Share</a>
       
       
     </footer>
