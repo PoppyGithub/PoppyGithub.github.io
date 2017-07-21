@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>git常用命令 | PoppyGithub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="背景介绍&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;公司一直在用git，经常会碰到各种各样的git操作，现在对工作中常用的命令做一个总结，方便自己备忘参考。 开始1、 git本地仓库关联远程仓库的两种方式####（1）在现有目录中初始化仓库： a.首先，进入该项目目录并初始化： 1$git init 作用：创建一个名为.git的子目录，该子目录包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git常用命令">
+<meta property="og:url" content="http://PoppyGithub.com/2017/06/24/git常用命令/index.html">
+<meta property="og:site_name" content="PoppyGithub">
+<meta property="og:description" content="背景介绍&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;公司一直在用git，经常会碰到各种各样的git操作，现在对工作中常用的命令做一个总结，方便自己备忘参考。 开始1、 git本地仓库关联远程仓库的两种方式####（1）在现有目录中初始化仓库： a.首先，进入该项目目录并初始化： 1$git init 作用：创建一个名为.git的子目录，该子目录包">
+<meta property="og:updated_time" content="2017-07-21T03:51:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git常用命令">
+<meta name="twitter:description" content="背景介绍&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;公司一直在用git，经常会碰到各种各样的git操作，现在对工作中常用的命令做一个总结，方便自己备忘参考。 开始1、 git本地仓库关联远程仓库的两种方式####（1）在现有目录中初始化仓库： a.首先，进入该项目目录并初始化： 1$git init 作用：创建一个名为.git的子目录，该子目录包">
+  
+    <link rel="alternate" href="/atom.xml" title="PoppyGithub" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">PoppyGithub</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">the stack of it nerds</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://PoppyGithub.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/24/git常用命令/" class="article-date">
+  <time datetime="2017-06-24T09:07:51.000Z" itemprop="datePublished">2017-06-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git常用命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司一直在用git，经常会碰到各种各样的git操作，现在对工作中常用的命令做一个总结，方便自己备忘参考。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="1、-git本地仓库关联远程仓库的两种方式"><a href="#1、-git本地仓库关联远程仓库的两种方式" class="headerlink" title="1、 git本地仓库关联远程仓库的两种方式"></a>1、 git本地仓库关联远程仓库的两种方式</h3><p>####（1）在现有目录中初始化仓库：</p>
+<p>a.首先，进入该项目目录并初始化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$git init</div></pre></td></tr></table></figure>
+<p>作用：创建一个名为.git的子目录，该子目录包含初始化的Git仓库的所有必须文件，此时我们仅作了初始化操作，项目里文件还未被跟踪。</p>
+<p>b.如果当前目录下有几个文件想要纳入版本控制，需要先用 git add 命令告诉 Git 开始对这些文件进行跟踪，然后git commit提交到本地仓库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git add *.c</div><div class="line">$ git add README</div><div class="line">$ git commit -m &apos;initial project version&apos;</div></pre></td></tr></table></figure>
+<p>现在，你已经得到了一个实际维护着若干文件的 Git 仓库。(可以使用git push推送的远程分支，如果你想把克隆的别人的git项目推送到自己的分支，记得更改配置文件)</p>
+<p>####（2）克隆现有的仓库：</p>
+<p>如果想对某个开源项目出一份力，可以先把该项目的 Git 仓库复制一份出来，这就需要用到 git clone 命令。如果你熟悉其他的 VCS 比如 Subversion，你可能已经注意到这里使用的是 clone 而不是 checkout。这是个非常重要的差别，Git 收取的是项目历史的所有数据（每一个文件的每一个版本），服务器上有的数据克隆之后本地也都有了。实际上，即便服务器的磁盘发生故障，用任何一个克隆出来的客户端都可以重建服务器上的仓库，回到当初克隆时的状态（虽然可能会丢失某些服务器端的挂钩设置，但所有版本的数据仍旧还在）。</p>
+<p>克隆仓库的命令格式为 git clone [url]。比如，要克隆 Ruby 语言的 Git 代码仓库 Grit，可以用下面的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone git://github.com/schacon/grit.git</div></pre></td></tr></table></figure>
+<p>这会在当前目录下创建一个名为grit的目录，其中包含一个 .git 的目录，用于保存下载下来的所有版本记录，然后从中取出最新版本的文件拷贝。如果进入这个新建的 grit 目录，你会看到项目中的所有文件已经在里边了，准备好后续的开发和使用。如果希望在克隆的时候，自己定义要新建的项目目录名称，可以在上面的命令末尾指定新的名字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone git://github.com/schacon/grit.git mygrit</div></pre></td></tr></table></figure>
+<p>唯一的差别就是，现在新建的目录成了 mygrit，其他的都和上边的一样。</p>
+<h3 id="2、git-branch"><a href="#2、git-branch" class="headerlink" title="2、git branch"></a>2、git branch</h3><p>a.不带参数：列出本地已经存在的分支，并且在当前分支的前面加“*”号标记</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch</div></pre></td></tr></table></figure>
+<p>b.列出远程分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -r</div></pre></td></tr></table></figure>
+<p>c.列出本地分支和远程分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -a</div></pre></td></tr></table></figure>
+<p>d.产生新的分支，需要注意，此处只是创建分支，不进行分支切换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git branch new-branch</div></pre></td></tr></table></figure>
+<p>e.重命名分支，如果newbranch名字分支已经存在，则需要使用-M强制重命名，否则，使用-m进行重命名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git branch -m | -M oldbranch newbranch</div></pre></td></tr></table></figure>
+<p>f.删除branchname分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git branch -d | -D branchname</div></pre></td></tr></table></figure>
+<p>g.删除远程branchname分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git branch -d -r branchname</div></pre></td></tr></table></figure>
+<h3 id="3、git-diff"><a href="#3、git-diff" class="headerlink" title="3、git diff"></a>3、git diff</h3><p>a.用于比较两次修改的差异</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git diff</div></pre></td></tr></table></figure>
+<h3 id="4、git-merge的基本用法为把一个分支或或某个commit的修改合并到现在的分支上。"><a href="#4、git-merge的基本用法为把一个分支或或某个commit的修改合并到现在的分支上。" class="headerlink" title="4、git merge的基本用法为把一个分支或或某个commit的修改合并到现在的分支上。"></a>4、git merge的基本用法为把一个分支或或某个commit的修改合并到现在的分支上。</h3><h3 id="5、git-checkout撤销未提交的修改"><a href="#5、git-checkout撤销未提交的修改" class="headerlink" title="5、git checkout撤销未提交的修改"></a>5、git checkout撤销未提交的修改</h3><p>a、撤销所有修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git checkout .</div></pre></td></tr></table></figure>
+<p>b、恢复某个已修改的文件（撤销未提交的修改）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git checkout file-name</div></pre></td></tr></table></figure>
+<p>c、比如修改的都是java文件，不必一个个撤销，可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git checkout *.java</div></pre></td></tr></table></figure>
+<h3 id="6、删除本地分支和远程分支"><a href="#6、删除本地分支和远程分支" class="headerlink" title="6、删除本地分支和远程分支"></a>6、删除本地分支和远程分支</h3><p>a、删除本地分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git branch -D br</div></pre></td></tr></table></figure>
+<p>b、删除远程分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git push origin :br(分支名)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://PoppyGithub.com/2017/06/24/git常用命令/" data-id="cj5dbzt6q0000l5o9yvztbyg2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/24/使用hexo搭建github博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用hexo搭建github博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/24/git常用命令/">git常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/使用hexo搭建github博客/">使用hexo搭建github博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 wanglei<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
