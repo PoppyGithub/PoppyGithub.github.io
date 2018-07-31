@@ -68,6 +68,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js变量提升" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/16/js变量提升/" class="article-date">
+  <time datetime="2017-08-16T09:07:51.000Z" itemprop="datePublished">2017-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/js变量提升/">变量提升与函数提升</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近公司新开发一个项目，名字不方便透漏，到时候就知道了，哈哈哈哈。在项目开发过程中碰到一个坑，情况当时是这样的，因为项目是我和另一个同事一起开发的，当时合并代码的时候出现了一个问题，她设置的一个全局变量在另一个函数里取不到，后来找了很长时间才发现我设置的变量和她的有重名，然后牵扯出了全局变量和局部变量及变量提升的问题，下面好好做一个总结。</p>
+<h3 id="1、js变量提升"><a href="#1、js变量提升" class="headerlink" title="1、js变量提升"></a>1、js变量提升</h3><p>先来看一段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var v=&apos;leileiandyaoyao&apos;; </div><div class="line">function a()&#123; </div><div class="line">    console.log(v); </div><div class="line">    var v=&quot;leilei&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个时候执行a(),结果为undefined</p>
+<p>而这种情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var v=&apos;leileiandyaoyao&apos;; </div><div class="line">if(1&gt;0)&#123;</div><div class="line">  	 console.log(v);</div><div class="line">    var v=&quot;leilei&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的执行结果是 leileiandyaoyao，这里就涉及到js的变量提升问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var v=&apos;leileiandyaoyao&apos;; </div><div class="line">if(1&gt;0)&#123;</div><div class="line">  	 console.log(v);</div><div class="line">    var v=&quot;leilei&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是一篇不完整的文章，未完待续。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://PoppyGithub.com/2017/08/16/js变量提升/" data-id="cjk9j5k7h0002j5qzysuea0nv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/24/git常用命令/" class="article-date">
@@ -135,7 +180,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://PoppyGithub.com/2017/06/24/git常用命令/" data-id="cj5dbzt6q0000l5o9yvztbyg2" class="article-share-link">Share</a>
+      <a data-url="http://PoppyGithub.com/2017/06/24/git常用命令/" data-id="cjk9j5k770000j5qzu2ydvwo6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -253,7 +298,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://PoppyGithub.com/2017/06/24/使用hexo搭建github博客/" data-id="cj5dbzt6x0001l5o9x330hbzj" class="article-share-link">Share</a>
+      <a data-url="http://PoppyGithub.com/2017/06/24/使用hexo搭建github博客/" data-id="cjk9j5k7j0003j5qzmso6a6r2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -298,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://PoppyGithub.com/2017/06/24/hello-world/" data-id="cj5dbzt7n0002l5o9ejdsvhcl" class="article-share-link">Share</a>
+      <a data-url="http://PoppyGithub.com/2017/06/24/hello-world/" data-id="cjk9j5k7c0001j5qzgqi13f4j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -325,7 +370,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
     </div>
   </div>
 
@@ -336,6 +381,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/08/16/js变量提升/">变量提升与函数提升</a>
+          </li>
         
           <li>
             <a href="/2017/06/24/git常用命令/">git常用命令</a>
@@ -361,7 +410,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 wanglei<br>
+      &copy; 2018 wanglei<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
