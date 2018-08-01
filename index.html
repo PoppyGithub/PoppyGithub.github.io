@@ -68,6 +68,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-小程序开发之事件广播" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/31/小程序开发之事件广播/" class="article-date">
+  <time datetime="2018-07-31T10:47:36.000Z" itemprop="datePublished">2018-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/31/小程序开发之事件广播/">小程序开发之事件广播</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小程序的麦克风接入了即构，但后期可能会更换通道（例如声网、网易云信等等），现在的代码将麦克风的公用代码和即构的代码写在了一起，写的比较乱，后期更换频道非常麻烦，CTO提出将即构代码抽出，业务和逻辑代码分离，事不宜迟，说抽就抽，但在抽的过程中。。。碰到了一个“致命”的问题，导致功能无法实现，（当然，对大佬来说可能是小问题），这个问题困扰了我好久好久，但是最终还是被我解决了，哈哈，现在一起记录一下我的解决过程 </p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="1、-问题描述"><a href="#1、-问题描述" class="headerlink" title="1、 问题描述"></a>1、 问题描述</h3><p>a.简介项目的代码分离方式（当然是非面向对象莫属了,封装结构大概如下：）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function Zego()&#123;&#125;</div><div class="line">Zego.prototype = &#123;</div><div class="line">  constructor: Zego,</div><div class="line">  init()&#123;</div><div class="line">  &#125;,</div><div class="line">  login()&#123;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">module.exports.Zego = Zego;</div></pre></td></tr></table></figure>
+<p>备注：面向对象的对象创建方式我就不一一介绍了，有兴趣可以自己去了解一下，我这采用的是混合模式，即构造函数模式定义实例属性，而原型模式用于定义方法和共享的属性。</p>
+<p>b.问题来了</p>
+<p>在抽离过程中，我在抽离的Zego代码中(页面实例对象Zego)推流后返回一个推流URL，需要传递给麦克风页面（页面实例对象Microphone），然后设置给麦克风界面的微信自带组件live-pusher的url属性，并通过wx.createLivePusherContext()创建并返回 live-pusher 上下文 LivePusherContext 对象，设置url并创建对象的过程必须在麦克风界面进行，不然取不到live-pusher组件。</p>
+<p>那么问题来了，我怎么把这个url返回给麦克风界面？？？</p>
+<p>我的第一反应是用回调函数啊，然后就开始一顿写，写，写，写着写着发现不对了，函数虽然定义在麦克风界面，但是是在Zego页面调用的，里面的this指向的是Zego，这和直接写在Zego页面有什么区别。。。这个问题困扰了我好久好久。。。</p>
+<p>直到有一天。。。</p>
+<h3 id="2、问题解决："><a href="#2、问题解决：" class="headerlink" title="2、问题解决："></a>2、问题解决：</h3><p>我在微信小程序开发论坛发现了一篇文章：<br><a href="http://www.wxapp-union.com/portal.php?mod=view&amp;aid=1481" target="_blank" rel="external">http://www.wxapp-union.com/portal.php?mod=view&amp;aid=1481</a></p>
+<p>文章中介绍：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">以下两种场景，在微信小程序官方并没有提供类似iOS的NSNotificationCenter 或者 Android的广播类似的解决方案。</div><div class="line"></div><div class="line">1、A页面 -&gt; B页面，B页面完成相关逻辑需要通知A页面刷新数据（并传值）</div><div class="line">2、通知（广播）已入栈并且注册过通知的页面（并传值）</div><div class="line"></div><div class="line">如果遇到以上的场景，要怎么处理呢？</div></pre></td></tr></table></figure>
+<p>这，这，这，这不是和我遇到的问题是一样的嘛？？？</p>
+<p>碰到救星了</p>
+<p>对，就是WxNotificationCenter，继续往下看</p>
+<h3 id="3、WxNotificationCenter的使用"><a href="#3、WxNotificationCenter的使用" class="headerlink" title="3、WxNotificationCenter的使用"></a>3、WxNotificationCenter的使用</h3><p>a.A页面的Page生命周期中注册、移除通知，及接收通知后响应的fuction</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">onLoad: function () &#123;</div><div class="line"> //注册通知</div><div class="line"> var that = this</div><div class="line"> WxNotificationCenter.addNotification(&apos;NotificationName&apos;, that.didNotification, that)    </div><div class="line">&#125;,</div><div class="line"></div><div class="line">onUnload: function () &#123;</div><div class="line"> //移除通知</div><div class="line"> var that = this</div><div class="line"> WxNotificationCenter.removeNotification(&apos;NotificationName&apos;, that)</div><div class="line">&#125;,</div><div class="line"></div><div class="line">//通知处理</div><div class="line">didNotification: function () &#123;</div><div class="line"> //更新数据</div><div class="line"> this.setData(&#123;</div><div class="line"></div><div class="line"> &#125;)</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>b.B页面处理完逻辑，发送通知</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//发送通知（所有注册过&apos;NotificationName&apos;的页面都会接收到通知）</div><div class="line">WxNotificationCenter.postNotificationName(&apos;NotificationName&apos;)</div></pre></td></tr></table></figure>
+<p>c.如何传值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">obj 为字符串 或者 对象</div><div class="line"></div><div class="line">//B页面处理完逻辑，发送通知和需要传递的值</div><div class="line">WxNotificationCenter.postNotificationName(&apos;NotificationName&apos;,obj)</div><div class="line"></div><div class="line">//A页面注册通知，以及在接收通知后响应的fuction里处理返回值</div><div class="line">WxNotificationCenter.addNotification(&apos;NotificationName&apos;, that.didNotification, that)</div><div class="line"></div><div class="line">//处理obj</div><div class="line">didNotification: function (obj) &#123;</div><div class="line">  //拿到值obj</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>备注：当然小程序事件广播也不只这一种方式，还可以参照摩拜小程序的事件广播方式broadcast.js，参考链接：<a href="https://blog.csdn.net/hxqneuq2012/article/details/54381669" target="_blank" rel="external">https://blog.csdn.net/hxqneuq2012/article/details/54381669</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://PoppyGithub.com/2018/07/31/小程序开发之事件广播/" data-id="cjkapygd50003k3qzcukchsit" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-js变量提升" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/08/16/js变量提升/" class="article-date">
@@ -103,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://PoppyGithub.com/2017/08/16/js变量提升/" data-id="cjk9j5k7h0002j5qzysuea0nv" class="article-share-link">Share</a>
+      <a data-url="http://PoppyGithub.com/2017/08/16/js变量提升/" data-id="cjkapygd00001k3qzffus05m5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -180,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://PoppyGithub.com/2017/06/24/git常用命令/" data-id="cjk9j5k770000j5qzu2ydvwo6" class="article-share-link">Share</a>
+      <a data-url="http://PoppyGithub.com/2017/06/24/git常用命令/" data-id="cjkapygcu0000k3qznn3urmsh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -298,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://PoppyGithub.com/2017/06/24/使用hexo搭建github博客/" data-id="cjk9j5k7j0003j5qzmso6a6r2" class="article-share-link">Share</a>
+      <a data-url="http://PoppyGithub.com/2017/06/24/使用hexo搭建github博客/" data-id="cjkapygd60004k3qz2d125q9r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -343,7 +401,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://PoppyGithub.com/2017/06/24/hello-world/" data-id="cjk9j5k7c0001j5qzgqi13f4j" class="article-share-link">Share</a>
+      <a data-url="http://PoppyGithub.com/2017/06/24/hello-world/" data-id="cjkapygd30002k3qzam79pwro" class="article-share-link">Share</a>
       
       
     </footer>
@@ -370,7 +428,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
     </div>
   </div>
 
@@ -381,6 +439,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/31/小程序开发之事件广播/">小程序开发之事件广播</a>
+          </li>
         
           <li>
             <a href="/2017/08/16/js变量提升/">变量提升与函数提升</a>
