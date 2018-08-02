@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用hexo搭建github博客 | PoppyGithub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="背景介绍&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近发现很多代码中有些代码和工具经常用到，但每次都去找特别麻烦，索性在这做个整理和记录，下次直接在这copy就好了，省时省力。 开始1、截取地址栏中url的参数值1234567891011函数：function getQueryString(name) &amp;#123;    var reg = n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用hexo搭建github博客">
+<meta property="og:url" content="http://PoppyGithub.com/2018/03/02/前端常用代码工具整理/index.html">
+<meta property="og:site_name" content="PoppyGithub">
+<meta property="og:description" content="背景介绍&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近发现很多代码中有些代码和工具经常用到，但每次都去找特别麻烦，索性在这做个整理和记录，下次直接在这copy就好了，省时省力。 开始1、截取地址栏中url的参数值1234567891011函数：function getQueryString(name) &amp;#123;    var reg = n">
+<meta property="og:image" content="https://ohpi64xui.qnssl.com/github/share.png">
+<meta property="og:updated_time" content="2018-08-02T03:28:43.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用hexo搭建github博客">
+<meta name="twitter:description" content="背景介绍&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近发现很多代码中有些代码和工具经常用到，但每次都去找特别麻烦，索性在这做个整理和记录，下次直接在这copy就好了，省时省力。 开始1、截取地址栏中url的参数值1234567891011函数：function getQueryString(name) &amp;#123;    var reg = n">
+<meta name="twitter:image" content="https://ohpi64xui.qnssl.com/github/share.png">
+  
+    <link rel="alternate" href="/atom.xml" title="PoppyGithub" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">PoppyGithub</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">the stack of it nerds</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://PoppyGithub.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-前端常用代码工具整理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/02/前端常用代码工具整理/" class="article-date">
+  <time datetime="2018-03-02T09:07:51.000Z" itemprop="datePublished">2018-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用hexo搭建github博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近发现很多代码中有些代码和工具经常用到，但每次都去找特别麻烦，索性在这做个整理和记录，下次直接在这copy就好了，省时省力。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="1、截取地址栏中url的参数值"><a href="#1、截取地址栏中url的参数值" class="headerlink" title="1、截取地址栏中url的参数值"></a>1、截取地址栏中url的参数值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">函数：</div><div class="line">function getQueryString(name) &#123;</div><div class="line">    var reg = new RegExp(&quot;(^|&amp;)&quot; + name + &quot;=([^&amp;]*)(&amp;|$)&quot;, &quot;i&quot;);</div><div class="line">    var r = window.location.search.substr(1).match(reg);</div><div class="line">    if (r != null)</div><div class="line">        return unescape(r[2]);</div><div class="line">    return null;</div><div class="line">&#125;</div><div class="line">使用：</div><div class="line">var source = getQueryString(&apos;source&apos;) || &apos;&apos;;</div><div class="line">var keyword = getQueryString(&apos;keyword&apos;) || &apos;&apos;;</div></pre></td></tr></table></figure>
+<h3 id="2、时间戳转换"><a href="#2、时间戳转换" class="headerlink" title="2、时间戳转换"></a>2、时间戳转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">函数：</div><div class="line">function timestampToTime(timestamp) &#123;</div><div class="line">	//若传入的参数是秒，需要*1000，毫秒不需要</div><div class="line">    var date = new Date(timestamp * 1000);</div><div class="line">    var Y = date.getFullYear() + &apos;.&apos;;</div><div class="line">    var M = (date.getMonth() + 1 &lt; 10 ? &apos;0&apos; + (date.getMonth() + 1) : date.getMonth() + 1) + &apos;.&apos;;</div><div class="line">    var D = date.getDate() &lt; 10 ? &apos;0&apos; + date.getDate() : date.getDate();</div><div class="line">    return Y + M + D;</div><div class="line">&#125;</div><div class="line">使用：</div><div class="line">var time = 1533177712;</div><div class="line">timestampToTime(time);</div></pre></td></tr></table></figure>
+<p>或者使用time.js格式化时间戳:<br><a href="https://github.com/binnng/time.js" target="_blank" rel="external">https://github.com/binnng/time.js</a></p>
+<p>引入time.js后，会得到一个Time的方法，你可以这样使用它：</p>
+<p>var time = 1422875526971;</p>
+<p>Time(time, “%y年%M月%d日%h时%m分%s秒”); // xxxx年xx月xx日xx时xx分xx秒</p>
+<p>Time(time, “%y-%M-%d %h:%m:%s”); //xxxx-xx-xx xx:xx:xx</p>
+<h3 id="3、微信二次分享"><a href="#3、微信二次分享" class="headerlink" title="3、微信二次分享"></a>3、微信二次分享</h3><p>市场部很多活动要求能够分享到微信，且支持二次分享<br>像这样：<br><img src="https://ohpi64xui.qnssl.com/github/share.png" alt="MacDown logo"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">function weChatShare() &#123;</div><div class="line">    var url = location.href.split(&apos;?&apos;)[0];</div><div class="line">    wx.ready(function () &#123;</div><div class="line">        var options = &#123;</div><div class="line">            title: &apos;报名成为家有学霸在线辅导老师，月入十万不是梦！&apos;,</div><div class="line">            desc: &apos;家有学霸是国内知名的中小学名师真人1对1在线辅导平台，是无数中小学老师提高自身收入、挖掘自身价值的重要渠道。价格自己定，收入归自己；时间自由，足不出户；在线授课，轻松月入十万！快来报名吧~&apos;,</div><div class="line">            link: url,</div><div class="line">            imgUrl: &apos;https://ohpi64xui.qnssl.com/newShare/logo.png&apos;</div><div class="line">        &#125;;</div><div class="line">        wx.onMenuShareAppMessage(options);</div><div class="line">        wx.onMenuShareTimeline(options);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    $.ajax(&#123;</div><div class="line">        type: &apos;post&apos;,</div><div class="line">        url: Config.API.Domain + &apos;/jyxb-activity/external/wechat-share/sign&apos;,</div><div class="line">        data: &#123;url: location.href.split(&apos;#&apos;)[0]&#125;,</div><div class="line">        success: function (data) &#123;</div><div class="line">            var data = data.data;</div><div class="line">            wx.config(&#123;</div><div class="line">                appId: Config.Id.appId,//每个公司有自己的appID，且区分测试和正义环境</div><div class="line">                timestamp: data.timestamp, // 必填，生成签名的时间戳</div><div class="line">                nonceStr: data.nonceStr, // 必填，生成签名的随机串</div><div class="line">                signature: data.signature,// 必填，签名，见附录1</div><div class="line">                jsApiList: [</div><div class="line">                    &apos;onMenuShareAppMessage&apos;,</div><div class="line">                    &apos;onMenuShareTimeline&apos;</div><div class="line">                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2</div><div class="line">            &#125;);</div><div class="line">        &#125;,</div><div class="line">        error: function (error) &#123;</div><div class="line">            webToast(&quot;获取微信数据失败&quot; + error, 2000);</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line">使用：</div><div class="line">weChatShare();</div></pre></td></tr></table></figure>
+<p>未完待续。。。后期继续补充</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://PoppyGithub.com/2018/03/02/前端常用代码工具整理/" data-id="cjkc05yzy00041sqz76qvs5ut" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/31/小程序开发之事件广播/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          小程序开发之事件广播
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/16/js变量提升/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">变量提升与函数提升</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/31/小程序开发之事件广播/">小程序开发之事件广播</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/02/前端常用代码工具整理/">使用hexo搭建github博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/16/js变量提升/">变量提升与函数提升</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/git常用命令/">git常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/使用hexo搭建github博客/">使用hexo搭建github博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 wanglei<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
