@@ -68,6 +68,99 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-如何使用-webpack4和Babel7构建React应用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/06/如何使用-webpack4和Babel7构建React应用/" class="article-date">
+  <time datetime="2018-12-06T07:08:10.000Z" itemprop="datePublished">2018-12-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/06/如何使用-webpack4和Babel7构建React应用/">如何使用 webpack4和Babel7构建React应用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这俩天比较空，手头的工作基本都完成了，突然想研究下react项目的搭建，之前的项目框架都是老大搭建好的，我打算从零开始！</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="1、建立项目"><a href="#1、建立项目" class="headerlink" title="1、建立项目"></a>1、建立项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CommandLine 代码:</div><div class="line">$ mkdir react-elm &amp;&amp; cd react-elm</div><div class="line">$ mkdir -p src</div><div class="line">$ npm init -y</div></pre></td></tr></table></figure>
+<p>就是这么简单，项目建立完成！</p>
+<h3 id="2、设置webpack"><a href="#2、设置webpack" class="headerlink" title="2、设置webpack"></a>2、设置webpack</h3><p>webpack 提取原始的 React 组件，用于生成（几乎）每个浏览器都能运行的 JavaScript 代码。</p>
+<p>了解<a href="https://webpack.css88.com/" target="_blank" rel="external">如何使用 webpack</a> 是使用 React 的基础。</p>
+<p>安装webpack和webpack-cli:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CommandLine 代码:</div><div class="line">$ npm i webpack --save-dev</div><div class="line">$ npm i webpack-cli --save-dev</div></pre></td></tr></table></figure>
+<p>接下来在 package.json 中添加 webpack 命令：</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/1.png" alt="MacDown logo"></p>
+<h3 id="3、设置-Babel"><a href="#3、设置-Babel" class="headerlink" title="3、设置 Babel"></a>3、设置 Babel</h3><p>React components(组件) 大多是用 JavaScript ES6 编写的。</p>
+<p>由于浏览器无法理解 React 组件，因此需要进行某种转换。</p>
+<p>Webpack 不知道如何进行转换，但它具有 loaders(加载器) 的概念：将它们视为转换器。</p>
+<p>Webpack loaders(加载器) 将某些内容作为输入并生成其他内容作为输出。</p>
+<p>babel-loader 是 Webpack 加载器，负责接收 ES6 代码并使其可以让所选择的浏览器理解。</p>
+<p>很明显 babel-loader 使用 Babel。 并且 Babel 必须配置为使用一组预设：</p>
+<p>babel-preset-env 用于将 JavaScript ES6 代码编译为 ES5（请注意，babel-preset-es2015现已弃用）</p>
+<p>babel-preset-react 用于将 JSX 和其他东西编译到 JavaScript</p>
+<p>(1)引入依赖关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CommandLine 代码:</div><div class="line">$ npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev</div></pre></td></tr></table></figure>
+<p>（2）配置Babel！在项目文件夹中创建一个名为 .babelrc 的新文件：</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/2.png" alt="MacDown logo"></p>
+<p>（3）定义最小的webpack配置，创建一个名为 webpack.config.js 的文件，写入以下内容：</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/3.png" alt="MacDown logo"></p>
+<p>以上配置对于每个扩展名为 .js 的文件，Webpack 都会通过 babel-loader 来管理代码，将 ES6 转换为 ES5 。</p>
+<h3 id="4、编写-React-组件"><a href="#4、编写-React-组件" class="headerlink" title="4、编写 React 组件"></a>4、编写 React 组件</h3><p>这一步应该不用细讲啦，附上一张我的react组件的截图：</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/4.png" alt="MacDown logo"></p>
+<p>这应该是很基础的一个组件了</p>
+<h3 id="5、HTML-webpack-插件（html-webpack-plugin-，-html-loader）"><a href="#5、HTML-webpack-插件（html-webpack-plugin-，-html-loader）" class="headerlink" title="5、HTML webpack 插件（html-webpack-plugin ， html-loader）"></a>5、HTML webpack 插件（html-webpack-plugin ， html-loader）</h3><p>要显示我们的 React 组件，我们必须告诉 Webpack 生成一个 HTML 页面。 生成的 bundle(包) 将放在 <script> </script> 标签内。</p>
+<p>Webpack 需要两个额外的组件来处理HTML：html-webpack-plugin 和 html-loader。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CommandLine 代码:</div><div class="line">$ npm i html-webpack-plugin html-loader --save-dev</div></pre></td></tr></table></figure>
+<p>然后更新 webpack 配置：</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/5.png" alt="MacDown logo"></p>
+<p>接下来在 ./src/index.html 中创建一个 HTML 文件：</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/6.png" alt="MacDown logo"></p>
+<p>将我们的 React 组件将自己渲染到 <div id="“root”"> </div> 标签中。</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/7.png" alt="MacDown logo"></p>
+<p>当然，这还涉及到react-router,简单附一下我的router配置：</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/8.png" alt="MacDown logo"></p>
+<p>注意<router history="{History}">这的history是必传的，不然会报错。</router></p>
+<p>项目之间联系建立完成后，现在开始运行构建：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CommandLine 代码:</div><div class="line">$ npm run build</div></pre></td></tr></table></figure>
+<p>并查看 ./dist 文件夹。 您应该看到生成的 HTML 。</p>
+<h3 id="6、webpack-dev-server"><a href="#6、webpack-dev-server" class="headerlink" title="6、webpack dev server"></a>6、webpack dev server</h3><p>每次更改文件时，您应该不希望每次都需要键入 npm run build 来重新构建项目。</p>
+<p>只需 3 行配置即可启动并运行开发服务器。</p>
+<p>配置后，webpack 将在浏览器中启动您的应用程序。</p>
+<p>此外，每次在修改后保存文件时，webpack dev server 都会自动刷新浏览器的窗口。</p>
+<p>要设置 webpack dev server，请先通过以下命令安装包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CommandLine 代码:</div><div class="line">$ npm i webpack-dev-server --save-dev</div></pre></td></tr></table></figure>
+<p>打开 package.json 添加启动脚本：</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/9.png" alt="MacDown logo"></p>
+<p>现在，通过运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CommandLine 代码:</div><div class="line">$ npm start</div></pre></td></tr></table></figure>
+<p>你应该能够看到 webpack 在浏览器中启动你的应用程序。</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/10.png" alt="MacDown logo"></p>
+<p>当然一个完整的项目还需要很多的loader，具体配置可以参考我的webpack.config.js文件，附上我的项目地址：<a href="https://github.com/PoppyGithub/react-elm.git" target="_blank" rel="external">https://github.com/PoppyGithub/react-elm.git
+</a></p>
+<p>参考文章：<br><a href="https://www.css88.com/archives/9427" target="_blank" rel="external">https://www.css88.com/archives/9427</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://PoppyGithub.com/2018/12/06/如何使用-webpack4和Babel7构建React应用/" data-id="cjpccs0nv0000arqzo5jbrqwm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-小程序开发之事件广播" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/31/小程序开发之事件广播/" class="article-date">
@@ -524,7 +617,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
     </div>
   </div>
 
@@ -535,6 +628,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/12/06/如何使用-webpack4和Babel7构建React应用/">如何使用 webpack4和Babel7构建React应用</a>
+          </li>
         
           <li>
             <a href="/2018/07/31/小程序开发之事件广播/">小程序开发之事件广播</a>
@@ -550,10 +647,6 @@
         
           <li>
             <a href="/2017/08/16/js变量提升/">变量提升与函数提升</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/24/git常用命令/">git常用命令</a>
           </li>
         
       </ul>
