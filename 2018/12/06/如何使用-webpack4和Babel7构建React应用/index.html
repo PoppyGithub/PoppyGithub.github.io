@@ -15,13 +15,14 @@
 <meta property="og:image" content="https://ohpi64xui.qnssl.com/webpack/2.png">
 <meta property="og:image" content="https://ohpi64xui.qnssl.com/webpack/3.png">
 <meta property="og:image" content="https://ohpi64xui.qnssl.com/webpack/4.png">
+<meta property="og:image" content="https://ohpi64xui.qnssl.com/webpack/11.png">
 <meta property="og:image" content="https://ohpi64xui.qnssl.com/webpack/5.png">
 <meta property="og:image" content="https://ohpi64xui.qnssl.com/webpack/6.png">
 <meta property="og:image" content="https://ohpi64xui.qnssl.com/webpack/7.png">
 <meta property="og:image" content="https://ohpi64xui.qnssl.com/webpack/8.png">
 <meta property="og:image" content="https://ohpi64xui.qnssl.com/webpack/9.png">
 <meta property="og:image" content="https://ohpi64xui.qnssl.com/webpack/10.png">
-<meta property="og:updated_time" content="2018-12-06T08:40:53.593Z">
+<meta property="og:updated_time" content="2018-12-13T11:56:42.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 webpack4和Babel7构建React应用">
 <meta name="twitter:description" content="背景介绍&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;这俩天比较空，手头的工作基本都完成了，突然想研究下react项目的搭建，之前的项目框架都是老大搭建好的，我打算从零开始！ 开始1、建立项目1234CommandLine 代码:$ mkdir react-elm &amp;amp;&amp;amp; cd react-elm$ mkdir -p src$ npm">
@@ -127,6 +128,14 @@
 <h3 id="4、编写-React-组件"><a href="#4、编写-React-组件" class="headerlink" title="4、编写 React 组件"></a>4、编写 React 组件</h3><p>这一步应该不用细讲啦，附上一张我的react组件的截图：</p>
 <p><img src="https://ohpi64xui.qnssl.com/webpack/4.png" alt="MacDown logo"></p>
 <p>这应该是很基础的一个组件了</p>
+<p>Webpack 期望 entry point(入口点) 为 ./src/index.js</p>
+<p>创建 ./src/index.js ，并将创建的组件引入./src/index.js中</p>
+<p><img src="https://ohpi64xui.qnssl.com/webpack/11.png" alt="MacDown logo"></p>
+<p>有了这个，我们就可以通过运行以下命令来创建我们的包了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CommandLine 代码:</div><div class="line">$ npm run build</div></pre></td></tr></table></figure>
+<p>给 Webpack 一秒钟，看看 bundle(包) 就生成了！</p>
+<p>bundle(包) 将被放入 ./dist/main.js 。</p>
+<p>现在让我们通过将 bundle(包) 包含在 HTML 页面中来实现我们的 React 实验。</p>
 <h3 id="5、HTML-webpack-插件（html-webpack-plugin-，-html-loader）"><a href="#5、HTML-webpack-插件（html-webpack-plugin-，-html-loader）" class="headerlink" title="5、HTML webpack 插件（html-webpack-plugin ， html-loader）"></a>5、HTML webpack 插件（html-webpack-plugin ， html-loader）</h3><p>要显示我们的 React 组件，我们必须告诉 Webpack 生成一个 HTML 页面。 生成的 bundle(包) 将放在 <script> </script> 标签内。</p>
 <p>Webpack 需要两个额外的组件来处理HTML：html-webpack-plugin 和 html-loader。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CommandLine 代码:</div><div class="line">$ npm i html-webpack-plugin html-loader --save-dev</div></pre></td></tr></table></figure>
@@ -161,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://PoppyGithub.com/2018/12/06/如何使用-webpack4和Babel7构建React应用/" data-id="cjpccs0nv0000arqzo5jbrqwm" class="article-share-link">Share</a>
+      <a data-url="http://PoppyGithub.com/2018/12/06/如何使用-webpack4和Babel7构建React应用/" data-id="cjpmjv80t0006ibqzdf274ocu" class="article-share-link">Share</a>
       
       
     </footer>
